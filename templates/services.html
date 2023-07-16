@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+
+
+<!-- Page Header Start -->
+<div class="container-fluid page-header mb-5 p-0" style="background-image: url({% static 'images/carousel-1.jpg' %}); height: 400px; display: flex; align-items: center; justify-content: center;filter: brightness(60%);">
+  <div class="container-fluid page-header-inner py-5">
+      <div class="container text-center pb-5">
+          <h1 class="display-3 text-white mb-3 animated slideInDown" style="margin: 0 auto;">Our Services</h1>
+      </div>
+  </div>
+</div>
+<!-- Page Header End -->
+
+        <!-- Service Start -->
+        <div class="container-xxl py-5">
+            <div class="container">
+                <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                    <h6 class="section-title text-center text-info text-uppercase">Our Services</h6>
+                    <h1 class="mb-5">Explore Our <span class="text-info text-uppercase">FIELDS OF PRACTICE</span></h1>
+                </div>
+                <div class="row g-4">
+                  {% for post in services_post %}
+                    <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                        <a class="service-item rounded" href="{% url 'post_detail' post.slug  %}">
+                            <div class="service-icon bg-transparent border rounded p-1">
+                                <div class="w-100 h-100 border rounded d-flex align-items-center justify-content-center">
+                                    <i class="fa fa-hotel fa-2x text-info"></i>
+                                </div>
+                            </div>
+                            <h5 class="mb-3"><b>{{ post.title | slice:":20" }}</b></h5>
+                            <p class="text-body mb-0">
+                              {{post.body|slice:":200" }}
+          
+                            </p>
+                        </a>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+          </div>
+          <!-- Service End -->
+
+          <style>
+
+            /*** Service ***/
+            .service-item {
+              height: 320px;
+              padding: 30px;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              text-align: center;
+              background: #FFFFFF;
+              box-shadow: 0 0 45px rgba(0, 0, 0, .08);
+              transition: .5s;
+            }
+            
+            .service-item:hover {
+              background: #002244;
+            }
+            
+            .service-item .service-icon {
+              margin: 0 auto 30px auto;
+              width: 65px;
+              height: 65px;
+              transition: .5s;
+            }
+            
+            .service-item i,
+            .service-item h5,
+            .service-item p {
+              transition: .5s;
+            }
+            
+            .service-item:hover i,
+            .service-item:hover h5,
+            .service-item:hover p {
+              color: #FFFFFF !important;
+            }
+            
+          </style> 
+
+{%endblock%}

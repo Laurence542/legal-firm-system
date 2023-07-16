@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Catlist
+{% endblock %}
+
+{% block content %}
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <div class="row">
+    <div class="col-12 pb-5"><h3><b>List of {{catlist.cat}} posts</b></h3></div>
+    {% for post in catlist.posts %}
+    <div class="col-md-4">
+      <div class="card mb-4 box-shadow">
+        <div class ="update">
+        <img class="card-img-top" src="{{post.image.url}}" alt="Card image cap" >
+        </div>
+        <div class="card-body">
+          <a href="{% url 'post_detail' post.slug  %}">{{ post.title }}</a>
+          <br>
+          <div class="post-preview">
+            <p>{{post.content|slice:":200" }}</p>
+          </div>
+          <p class="card-text">{{post.excerpt|truncatechars:50}}</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="text-muted">{{ post.created_on}}</small>
+          </div>
+          <a href="{% url 'post_detail' post.slug  %}" class="link">
+            Read more
+            <ion-icon name="arrow-forward-outline" class="readmore-icon"></ion-icon>
+          </a>
+        </div>
+      </div>
+      </a>
+    </div>
+{% endfor %}
+  </div>
+</div>
+</div>
+</div>
+
+{% endblock %}

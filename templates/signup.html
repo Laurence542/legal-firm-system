@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<br>
+<html>
+<head>
+  <style>
+
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    
+    .signup-container {
+      max-width: 400px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+    
+    select,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="password"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 3px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+    
+    button {
+      background-color: #4CAF50;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="signup-container">
+
+    <h1>Login</h1>
+  
+    <label for="user-type">Select User Type:</label>
+    <select id="user-type" onchange="redirectPage()">
+      <option value="">Select...</option>
+      <option value="client">Client</option>
+      <option value="employee">Lawyer</option>
+      <option value="manager">Manager</option>
+    </select>
+  
+  </div>
+  
+  <script>
+    function redirectPage() {
+      var userType = document.getElementById("user-type").value;
+      
+      if (userType === "client") {
+        window.location.href = "{% url 'client_logins' %}";
+      } else if (userType === "employee") {
+        window.location.href = "{% url 'lawyer_logins' %}";
+      } else if (userType === "manager") {
+        window.location.href = "{% url 'managers_login' %}";
+      }
+    }
+    
+    function submitForm() {
+      var name = document.getElementById("name").value;
+      var email = document.getElementById("email").value;
+      var phone = document.getElementById("phone").value;
+      var password = document.getElementById("password").value;
+      
+      // You can perform further validation or processing of the form data here
+      
+      // Redirect to a success page after form submission
+      window.location.href = "success.html";
+    }
+  </script>
+</body>
+</html>
+{%endblock%}
